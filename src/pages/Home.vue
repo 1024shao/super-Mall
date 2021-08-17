@@ -113,6 +113,7 @@ export default {
     // 得到切换栏距离顶部的距离
     swiperImgLoad() {
       this.tabOffsetTop = this.$refs.tabcontrol.$el.offsetTop
+      console.log("距离顶部高度", this.tabOffsetTop);
     }
   },
   mounted() {
@@ -125,6 +126,7 @@ export default {
   },
   deactivated() {
     this.saveY = this.$refs.scroll.bscroll.y
+    // 
   }
 }
 </script>

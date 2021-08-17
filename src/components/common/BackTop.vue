@@ -15,12 +15,16 @@ export default {
 }
 </script>
 
-<style>
-.back-top img {
+<style lang='less' scoped>
+.back-top {
   width: 43px;
   height: 43px;
   position: fixed;
   right: 8px;
   bottom: 55px;
+  img {
+    width: 43px;
+    height: 43px;
+  }
 }
 </style>

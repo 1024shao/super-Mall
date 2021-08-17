@@ -3,7 +3,7 @@
     <div class="swiper-wrapper">
       <div class="swiper-slide" v-for="item in bannerList" :key="item.acm">
         <a :href="item.link">
-          <img :src="item.image" alt="">
+          <img :src="item.image" alt="" @load="swiperImgLoad">
         </a>
       </div>
     </div>
@@ -21,7 +21,8 @@ export default {
   props: ['banner'],
   data() {
     return {
-      bannerList: []
+      bannerList: [],
+      imgIsLoad: false
     }
   },
   methods: {
@@ -43,6 +44,11 @@ export default {
         observer: true,//修改swiper自己或子元素时，自动初始化swiper
         observeParents: true,//修改swiper的父元素时，自动初始化swiper
       });
+    },
+    swiperImgLoad() {
+      if (!this.imgIsLoad)
+        this.$emit('swiperImgLoad')
+      this.imgIsLoad = true
     }
   },
   watch: {

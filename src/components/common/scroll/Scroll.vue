@@ -14,16 +14,18 @@ export default {
   props: {
     probeType: {
       type: Number,
-      default: 0
+      default: 0,
     }
   },
   data() {
     return {
-      bscroll: null
+      bscroll: null,
+      refreshFunc: null
     }
   },
   methods: {
     refresh() {
+      console.log('scroll重新加载');
       this.bscroll.refresh()
     },
 
@@ -46,15 +48,21 @@ export default {
       this.bscroll.finishPullUp()
     })
     // 图片加载完scrollHeight刷新
-    const refresh = debounce(this.refresh, 200)
-    this.$bus.$on('imgLoad', () => {
+    const refresh = debounce(this.refresh, 500)
+
+    this.refreshFunc = () => {
       this.$nextTick(() => {
         refresh()
       })
-    })
+    }
+    this.$bus.$on('imgLoad', this.refreshFunc)
   },
   updated() {
     this.bscroll.refresh()
+  },
+  deactivated() {
+    this.$bus.$clear()
+    this.remove
   },
 }
 </script>

@@ -19,7 +19,7 @@
         <div v-for="(item,index) in shop.score" :key="index">
           {{item.name}}&ensp;
           <span class="score" :class="{active:item.isBetter}">{{item.score}}</span>
-          <span class="score-bg" :class="{active:item.isBetter}">{{item.isBetter? '低' : '高'}}</span>
+          <span class="score-bg" :class="{active:item.isBetter}">{{item.isBetter? '高' : '低'}}</span>
         </div>
       </div>
     </div>

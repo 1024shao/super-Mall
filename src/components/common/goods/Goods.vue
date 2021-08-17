@@ -1,6 +1,6 @@
 <template>
   <div class="goods clear-fix">
-    <GoodsItem v-for="item in goods" :key="item.iid" :goodsItem='item' />
+    <GoodsItem v-for="(item,index) in goods" :key="index" :goodsItem='item' />
   </div>
 </template>
 

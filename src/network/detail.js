@@ -7,6 +7,12 @@ export function getDetailData(iid) {
     }
   })
 }
+// 商品推荐数据
+export function GetRecommendData() {
+  return request({
+    url: '/recommend'
+  })
+}
 
 // 将所有详情的数据封装为一个类
 export class Goods {
@@ -29,5 +35,13 @@ export class Shop {
     this.score = shopInfo.score;
     this.cSells = shopInfo.cSells;
     this.cGoods = shopInfo.cGoods;
+  }
+}
+// 商品详情
+export class GoodsParams {
+  constructor(info, rule) {
+    this.image = info.image ? info.image[0] : 0
+    this.infos = info.set
+    this.sizes = rule.tables
   }
 }

@@ -2,7 +2,7 @@
   <div class="swiper-container">
     <div class="swiper-wrapper">
       <div class="swiper-slide" v-for="(item,index) in bannerList" :key="index">
-        <img :src="item" alt="">
+        <img :src="item" alt="" @load="imgLoad">
       </div>
     </div>
     <!-- 如果需要分页器 -->
@@ -19,7 +19,8 @@ export default {
   props: ['topImages'],
   data() {
     return {
-      bannerList: []
+      bannerList: [],
+      imgIsload: false
     }
   },
   methods: {
@@ -41,10 +42,16 @@ export default {
         observer: true,//修改swiper自己或子元素时，自动初始化swiper
         observeParents: true,//修改swiper的父元素时，自动初始化swiper
       });
+    },
+    imgLoad() {
+      if (!this.imgIsload) {
+        this.$bus.$emit('imgLoad')
+        console.log('轮播图加载完');
+      }
+      this.imgIsload = true
     }
   },
   mounted() {
-    console.log(this.topImages);
   },
   watch: {
     topImages(val) {
@@ -57,7 +64,7 @@ export default {
 }
 </script>
 
-<style >
+<style scoped>
 .swiper-slide img {
   width: 100%;
 }
