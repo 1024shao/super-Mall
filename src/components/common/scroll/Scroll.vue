@@ -61,8 +61,7 @@ export default {
     this.bscroll.refresh()
   },
   deactivated() {
-    this.$bus.$clear()
-    this.remove
+    this.$bus.$off('imgLoad')
   },
 }
 </script>

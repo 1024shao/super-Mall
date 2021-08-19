@@ -1,6 +1,6 @@
 <template>
   <div class="params-wrap">
-    <div v-for="(item, index) in paramInfo.sizes" :key="index-1">
+    <div v-for="(item, index) in paramInfo.sizes" :key="index">
       <div v-for="(list, indey) in item" class="flex" :key="indey*10">
         <div v-for="(listitem, indez) in list" class="rule-list-item" :key="indez*100">
           {{listitem}}
@@ -26,7 +26,6 @@ export default {
     }
   },
   mounted() {
-    console.log(Object.keys(this.paramInfo).length);
   }
 }
 </script>

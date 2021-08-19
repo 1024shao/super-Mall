@@ -44,9 +44,6 @@ export default {
       return formatDate(date, 'yyyy-MM-dd');
     }
   },
-  mounted() {
-    console.log(Object.keys(this.commentInfo).length !== 0);
-  }
 }
 </script>
 

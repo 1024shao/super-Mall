@@ -19,7 +19,7 @@
       <ComGoods :goods='recommendData' ref="recommend" />
     </Scroll>
     <!-- 底部导航 -->
-    <DetailBotBar />
+    <DetailBotBar @addCart='addToCart' />
     <!-- 回到顶部 -->
     <BackTop class="backTop" v-show="isBackTopShow" @click.native="backTopClick" />
   </div>
@@ -68,8 +68,6 @@ export default {
       this.themeTopY.push(this.$refs.comment.$el.offsetTop)
       this.themeTopY.push(this.$refs.recommend.$el.offsetTop)
       this.themeTopY.push(Number.MAX_VALUE)
-
-      console.log(this.themeTopY);
     }, 200)
   },
   methods: {
@@ -97,7 +95,6 @@ export default {
     // 得到推荐数据
     GetRecommendData() {
       GetRecommendData().then(res => {
-        console.log(res);
         this.recommendData = res.data.list
       })
     },
@@ -128,12 +125,25 @@ export default {
     // 回到顶部
     backTopClick() {
       this.$refs.detailScroll.bscroll.scrollTo(0, 0, 500)
+    },
+    //添加商品至购物车
+    addToCart() {
+      const product = {}
+      product.img = this.topImages[0]
+      product.title = this.goods.title
+      product.desc = this.goods.desc
+      product.price = this.goods.realPrice
+      product.iid = this.id
+      product.count = 1
+      product.checked = false
+      this.$store.commit('addToCart', product)
+      // 展示toast
+      this.$toast.show('添加成功', 2000)
     }
   },
   mounted() {
     this.getDetailData()
     this.GetRecommendData()
-    console.log(this.$refs.scroll);
   },
 }
 </script>

@@ -40,7 +40,7 @@ import BackTop from '@/components/common/BackTop'
 
 export default {
   name: 'Home',
-  components: { NavBar, Swiper, Recommend, Pop, TabControl, Goods, Scroll, BackTop },
+  components: { NavBar, Swiper, Recommend, Pop, TabControl, Goods, Scroll, BackTop, },
   data() {
     return {
       banner: [],
@@ -126,7 +126,7 @@ export default {
   },
   deactivated() {
     this.saveY = this.$refs.scroll.bscroll.y
-    // 
+    //
   }
 }
 </script>
